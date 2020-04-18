@@ -1,23 +1,26 @@
 {
-  "name": "crwn-clothing",
+  "name": "shopping-cart",
   "version": "0.1.0",
   "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
-    "firebase": "6.0.2",
-    "node-sass": "4.12.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-redux": "7.0.3",
-    "react-router-dom": "5.0.0",
-    "react-stripe-checkout": "2.6.3",
-    "redux": "4.0.1",
+    "apollo-boost": "^0.4.7",
+    "firebase": "^7.12.0",
+    "graphql": "^15.0.0",
+    "node-sass": "^4.13.1",
+    "react": "^16.13.1",
+    "react-apollo": "^3.1.5",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.1.2",
+    "react-stripe-checkout": "^2.6.3",
+    "redux": "^4.0.5",
     "redux-logger": "3.0.6",
-    "redux-persist": "5.10.0",
+    "redux-persist": "^6.0.0",
     "reselect": "4.0.0"
   },
   "devDependencies": {
-    "react-scripts": "3.0.0"
+    "react-scripts": "3.4.0"
   },
   "resolutions": {
     "babel-jest": "24.7.1"
