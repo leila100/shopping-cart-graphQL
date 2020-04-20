@@ -5,7 +5,7 @@ import { createStructuredSelector } from "reselect";
 import { default as CheckoutItem } from "../../components/checkout-item/checkout-item.container";
 import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
 
-import { selectCartItems, selectCartTotal } from "../../redux/cart/cart.selectors";
+import { selectCartTotal } from "../../redux/cart/cart.selectors";
 
 import "./checkout.styles.scss";
 
@@ -42,7 +42,6 @@ const CheckoutPage = ({ cartItems, total }) => (
 );
 
 const mapStateToProps = createStructuredSelector({
-  cartItems: selectCartItems,
   total: selectCartTotal,
 });
 
