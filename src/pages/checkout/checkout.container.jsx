@@ -10,8 +10,20 @@ const GET_CART_ITEMS = gql`
   }
 `;
 
+const GET_TOTAL = gql`
+  {
+    total @client
+  }
+`;
+
 const CheckoutContainer = () => {
-  return <Query query={GET_CART_ITEMS}>{({ data: { cartItems } }) => <Checkout cartItems={cartItems} />}</Query>;
+  return (
+    <Query query={GET_CART_ITEMS}>
+      {({ data: { cartItems } }) => (
+        <Query query={GET_TOTAL}>{({ data: { total } }) => <Checkout cartItems={cartItems} total={total} />}</Query>
+      )}
+    </Query>
+  );
 };
 
 export default CheckoutContainer;
