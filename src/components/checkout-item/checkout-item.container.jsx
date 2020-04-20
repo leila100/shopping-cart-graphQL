@@ -10,10 +10,26 @@ const ADD_ITEM_TO_CART = gql`
   }
 `;
 
+const REMOVE_ITEM = gql`
+  mutation RemoveItem($item: Item!) {
+    removeItem(item: $item) @client
+  }
+`;
+
 const CheckoutItemContainer = (props) => {
   return (
     <Mutation mutation={ADD_ITEM_TO_CART}>
-      {(addItemToCart) => <CheckoutItem {...props} addItem={(item) => addItemToCart({ variables: { item } })} />}
+      {(addItemToCart) => (
+        <Mutation mutation={REMOVE_ITEM}>
+          {(removeItem) => (
+            <CheckoutItem
+              {...props}
+              addItem={(item) => addItemToCart({ variables: { item } })}
+              removeItem={(item) => removeItem({ variables: { item } })}
+            />
+          )}
+        </Mutation>
+      )}
     </Mutation>
   );
 };
