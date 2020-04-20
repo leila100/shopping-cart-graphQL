@@ -6,7 +6,6 @@ import StripeCheckoutButton from "../../components/stripe-button/stripe-button.c
 import "./checkout.styles.scss";
 
 const CheckoutPage = ({ cartItems, total }) => {
-  console.log("total: ", total);
   return (
     <div className='checkout-page'>
       <div className='checkout-header'>

@@ -7,6 +7,13 @@ export const typeDefs = gql`
     quantity: Int
   }
 
+  extend type Section {
+    title: String!
+    imageUrl: String!
+    id: id!
+    linkUrl: String!
+  }
+
   extend type Mutation {
     ToggleCartHidden: Boolean!
     AddItemToCart(item: Item!): [Item]!
@@ -65,7 +72,6 @@ export const resolvers = {
         data: { itemCount: getCartItemCount(newCartItems) },
       });
 
-      console.log("Get total: ", getTotal(newCartItems));
       // update the total
       cache.writeQuery({
         query: GET_TOTAL,
