@@ -7,14 +7,19 @@ export const typeDefs = gql`
     quantity: Int
   }
 
-  extend type Section {
-    title: String!
-    imageUrl: String!
-    id: id!
-    linkUrl: String!
+  extend type DateTime {
+    nanoseconds: Int!
+    seconds: Int!
+  }
+  extend type User {
+    id: ID!
+    displayName: String!
+    email: String!
+    createdAt: DateTime!
   }
 
   extend type Mutation {
+    SetCurrentUser(user: User!): User!
     ToggleCartHidden: Boolean!
     AddItemToCart(item: Item!): [Item]!
     RemoveItem(item: Item!): [Item]!
@@ -46,8 +51,23 @@ const GET_TOTAL = gql`
   }
 `;
 
+const GET_CURRENT_USER = gql`
+  {
+    currentUser @client
+  }
+`;
+
 export const resolvers = {
   Mutation: {
+    setCurrentUser: (_root, { user }, { cache }) => {
+      cache.writeQuery({
+        query: GET_CURRENT_USER,
+        data: { currentUser: user },
+      });
+
+      return user;
+    },
+
     toggleCartHidden: (_root, _args, _context) => {
       const { cache } = _context;
       const { cartHidden } = cache.readQuery({
